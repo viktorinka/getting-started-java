@@ -47,11 +47,19 @@ public class ParameterizedTests {
         );
     }
 
-    @DisplayName("Поиск названий секций на странице {0} - с помощью MethodSource")
+    @DisplayName("Поиск названий секций на странице {0} - с помощью CsvSource")
     @ParameterizedTest
     @CsvSource(value = {"Product, Product",
                         "Solutions, Solutions"})
     void searchSectionCsv(String value, String text) {
+        $(".header-menu-wrapper").shouldHave(Condition.text(value));
+        $(".header-menu-wrapper").shouldHave(Condition.text(text)); // второй аргумент дурацкий потому что ничего не придумала и хотела сделать 2 параметра
+    }
+
+    @DisplayName("Поиск названий секций на странице {0} - с помощью CsvFileSource")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/test-data.csv", numLinesToSkip = 1)
+    void searchSectionCsvFile(String value, String text) {
         $(".header-menu-wrapper").shouldHave(Condition.text(value));
         $(".header-menu-wrapper").shouldHave(Condition.text(text)); // второй аргумент дурацкий потому что ничего не придумала и хотела сделать 2 параметра
     }
