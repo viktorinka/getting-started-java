@@ -1,5 +1,20 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.19.0")
+            }
+        }
+    }
 }
 
 repositories {
@@ -14,7 +29,8 @@ dependencies {
             "com.codeborne:pdf-test:1.5.0",
             "com.codeborne:xls-test:1.4.3",
             "com.opencsv:opencsv:5.7.1",
-            "com.google.code.gson:gson:2.10.1")
+            "com.google.code.gson:gson:2.10.1",
+            "io.qameta.allure:allure-selenide:2.19.0")
 }
 
 tasks.withType(JavaCompile) {
