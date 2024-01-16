@@ -73,7 +73,7 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setPicture(String value) {
-        $("#uploadPicture").uploadFile(new File("/Users/viktoriya.melnikova/Project/getting-started-java/src/test/java/resources/file.jpeg"));
+        $("#uploadPicture").uploadFile(new File(value));
 
         return this;
     }

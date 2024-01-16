@@ -1,6 +1,8 @@
 package tests.lesson_12;
 
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import tests.TestBase;
@@ -35,10 +37,12 @@ public class RegistrationWithFakerJenkinsTests extends TestBaseJenkins {
     String dayOfBirth = (new SimpleDateFormat("dd", Locale.ENGLISH)).format(fakerDateOfBirthday);
     String monthOfBirth = (new SimpleDateFormat("MMMM", Locale.ENGLISH)).format(fakerDateOfBirthday);
     String yearOfBirth = (new SimpleDateFormat("y", Locale.ENGLISH)).format(fakerDateOfBirthday);
-    String pictureName = "file.jpeg";
+    String pictureName = "/Users/viktoriya/IdeaProjects/getting-started-java/src/test/resources/file.jpeg";
 
 
     @Test
+    @DisplayName("Проверка формы")
+    @Tag("remote")
     void Test() {
         registrationFormPage.openPage()
                 .setFirstName(firstName)
