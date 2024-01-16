@@ -37,7 +37,7 @@ public class RegistrationWithFakerJenkinsTests extends TestBaseJenkins {
     String dayOfBirth = (new SimpleDateFormat("dd", Locale.ENGLISH)).format(fakerDateOfBirthday);
     String monthOfBirth = (new SimpleDateFormat("MMMM", Locale.ENGLISH)).format(fakerDateOfBirthday);
     String yearOfBirth = (new SimpleDateFormat("y", Locale.ENGLISH)).format(fakerDateOfBirthday);
-    String pictureName = "/Users/viktoriya/IdeaProjects/getting-started-java/src/test/resources/file.jpeg";
+    String pictureName = "file.jpeg";
 
 
     @Test
@@ -58,7 +58,6 @@ public class RegistrationWithFakerJenkinsTests extends TestBaseJenkins {
                 .setState(state)
                 .setCity(city)
                 .pressSubmit()
-                .checkResult()
                 .checkResult()
                 .verifyResultsModalData("Student Name", firstName + " " + lastName)
                 .verifyResultsModalData("Student Email", email)

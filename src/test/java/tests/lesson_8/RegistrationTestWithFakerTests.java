@@ -34,26 +34,25 @@ public class RegistrationTestWithFakerTests extends TestBase {
     String dayOfBirth = (new SimpleDateFormat("dd", Locale.ENGLISH)).format(fakerDateOfBirthday);
     String monthOfBirth = (new SimpleDateFormat("MMMM", Locale.ENGLISH)).format(fakerDateOfBirthday);
     String yearOfBirth = (new SimpleDateFormat("y", Locale.ENGLISH)).format(fakerDateOfBirthday);
-    String pictureName = "/Users/viktoriya/IdeaProjects/getting-started-java/src/test/resources/file.jpeg";
+    String pictureName = "file.jpeg";
 
 
     @Test
     void Test() {
         registrationFormPage.openPage()
-//            .setFirstName(firstName)
-//            .setLastName(lastName)
-//            .setEmail(email)
-//            .setGender(gender)
-//            .setNumber(number)
-//            .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
-//            .setSubject(subject)
-//            .setHobies(hobbies)
+            .setFirstName(firstName)
+            .setLastName(lastName)
+            .setEmail(email)
+            .setGender(gender)
+            .setNumber(number)
+            .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+            .setSubject(subject)
+            .setHobies(hobbies)
             .setPicture(pictureName)
             .setCurrentAddress(address)
             .setState(state)
             .setCity(city)
             .pressSubmit()
-            .checkResult()
             .checkResult()
             .verifyResultsModalData("Student Name", firstName + " " + lastName)
             .verifyResultsModalData("Student Email", email)
