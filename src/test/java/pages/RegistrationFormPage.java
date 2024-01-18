@@ -15,7 +15,7 @@ public class RegistrationFormPage {
 
     Calendar calendar = new Calendar();
     CheckResult checkResult = new CheckResult();
-    @Step("Открытие формы")
+
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
@@ -23,10 +23,8 @@ public class RegistrationFormPage {
         return this;
     }
 
-    @Step("Заполнение формы")
     public RegistrationFormPage setFirstName(String value) {
         $("#firstName").setValue(value);
-
         return this;
     }
 
@@ -105,7 +103,6 @@ public class RegistrationFormPage {
 
         return this;
     }
-    @Step("Проверка формы")
     public RegistrationFormPage checkResult() {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         return this;

@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
+import static io.qameta.allure.Allure.step;
+
 public class RegistrationWithFakerJenkinsTests extends TestBaseJenkins {
 
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
@@ -44,30 +46,34 @@ public class RegistrationWithFakerJenkinsTests extends TestBaseJenkins {
     @DisplayName("Проверка формы")
     @Tag("remote")
     void Test() {
-        registrationFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setGender(gender)
-                .setNumber(number)
-                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
-                .setSubject(subject)
-                .setHobies(hobbies)
-                .setPicture(pictureName)
-                .setCurrentAddress(address)
-                .setState(state)
-                .setCity(city)
-                .pressSubmit()
-                .checkResult()
-                .verifyResultsModalData("Student Name", firstName + " " + lastName)
-                .verifyResultsModalData("Student Email", email)
-                .verifyResultsModalData("Gender", gender)
-                .verifyResultsModalData("Mobile", number)
-                .verifyResultsModalData("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                .verifyResultsModalData("Subjects", subject)
-                .verifyResultsModalData("Hobbies", hobbies)
-                .verifyResultsModalData("Picture", pictureName)
-                .verifyResultsModalData("Address", address)
-                .verifyResultsModalData("State and City", state + " " + city);
+        step("Fill the registration form", () -> {
+            registrationFormPage.openPage()
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setEmail(email)
+                    .setGender(gender)
+                    .setNumber(number)
+                    .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                    .setSubject(subject)
+                    .setHobies(hobbies)
+                    .setPicture(pictureName)
+                    .setCurrentAddress(address)
+                    .setState(state)
+                    .setCity(city)
+                    .pressSubmit()
+                    .checkResult();
+        });
+        step("Verify results", () -> {
+            registrationFormPage.verifyResultsModalData("Student Name", firstName + " " + lastName)
+                    .verifyResultsModalData("Student Email", email)
+                    .verifyResultsModalData("Gender", gender)
+                    .verifyResultsModalData("Mobile", number)
+                    .verifyResultsModalData("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                    .verifyResultsModalData("Subjects", subject)
+                    .verifyResultsModalData("Hobbies", hobbies)
+                    .verifyResultsModalData("Picture", pictureName)
+                    .verifyResultsModalData("Address", address)
+                    .verifyResultsModalData("State and City", state + " " + city);
+        });
     }
 }
