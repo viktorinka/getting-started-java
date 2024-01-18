@@ -30,19 +30,29 @@ dependencies {
             "com.codeborne:xls-test:1.4.3",
             "com.opencsv:opencsv:5.7.1",
             "com.google.code.gson:gson:2.10.1",
-            "io.qameta.allure:allure-selenide:2.19.0")
+            "io.qameta.allure:allure-selenide:2.19.0",
+            "org.slf4j:slf4j-simple:2.0.7",
+            "org.aspectj:aspectjweaver:1.9.19")
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
 
 task remote_test(type: Test) {
     useJUnitPlatform {
         includeTags("remote")
+
+    }
+
+task one_property_test(type: Test) {
+        useJUnitPlatform {
+            includeTags("one_property")
+        }
     }
 }

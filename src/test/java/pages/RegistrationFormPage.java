@@ -3,6 +3,7 @@ package pages;
 import com.github.javafaker.Faker;
 import components.Calendar;
 import components.CheckResult;
+import io.qameta.allure.Step;
 
 import java.io.File;
 
@@ -14,7 +15,7 @@ public class RegistrationFormPage {
 
     Calendar calendar = new Calendar();
     CheckResult checkResult = new CheckResult();
-
+    @Step("Открытие формы")
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
@@ -22,6 +23,7 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Заполнение формы")
     public RegistrationFormPage setFirstName(String value) {
         $("#firstName").setValue(value);
 
@@ -103,7 +105,7 @@ public class RegistrationFormPage {
 
         return this;
     }
-
+    @Step("Проверка формы")
     public RegistrationFormPage checkResult() {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         return this;
