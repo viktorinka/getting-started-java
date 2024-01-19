@@ -1,7 +1,7 @@
 {
   "base": {
     "logo": "",
-    "project": "",
+    "project": "test project",
     "environment": "",
     "comment": "see @dzherommo",
     "reportLink": "https://jenkins.autotests.cloud",
