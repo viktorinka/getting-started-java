@@ -1,8 +1,12 @@
 package properties;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@Tag("one_property")
 public class SystemPropertiesTests {
     @Test
     void simplePropertyTest() {
@@ -31,16 +35,18 @@ public class SystemPropertiesTests {
     }
 
     @Test
-    @Tag("one_property")
     void simpleProperty4Test() {
         String browserName = System.getProperty("browser", "mozilla");
         System.out.println(browserName);
+    }
+    @Test
+    @Disabled
+    void skipTest() {
+        assertTrue(false);
+    }
 
-        // gradle clean one_property_test
-        // mozilla
-
-        // gradle clean one_property_test -Dbrowser=safari
-        // safari
-
+    @Test
+    void negativeTest() {
+        assertTrue(false);
     }
 }
