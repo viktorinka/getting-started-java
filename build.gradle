@@ -32,7 +32,9 @@ dependencies {
             "com.google.code.gson:gson:2.10.1",
             "io.qameta.allure:allure-selenide:2.19.0",
             "org.slf4j:slf4j-simple:2.0.7",
-            "org.aspectj:aspectjweaver:1.9.19")
+            "org.aspectj:aspectjweaver:1.9.19",
+            "io.rest-assured:rest-assured:5.4.0",
+            "io.rest-assured:json-schema-validator:5.4.0")
 }
 
 tasks.withType(JavaCompile) {
