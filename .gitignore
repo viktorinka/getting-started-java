@@ -26,6 +26,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea/compiler.xml
 
 ### NetBeans ###
 /nbproject/private/

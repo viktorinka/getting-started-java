@@ -1,18 +1,21 @@
 package tests.lesson_18;
 
-import dev.failsafe.internal.util.Assert;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
+import tests.lesson_18.models.lombok.UserDataLombok;
+import tests.lesson_18.models.pojo.UserData;
+import tests.lesson_18.models.pojo.UserPojo;
+import tests.lesson_18.spec.Spec;
 
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ApiTests {
 
     @Test
-    void checkListUsersSchemeTest(){
+    void checkListUsersSchemeTest() {
         given()
                 .log().uri()
                 .when()
@@ -25,7 +28,7 @@ public class ApiTests {
     }
 
     @Test
-    void checkPostCreateTest(){
+    void checkPostCreateTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
         given()
                 .log().body()
@@ -41,7 +44,7 @@ public class ApiTests {
     }
 
     @Test
-    void checkPutCreateTest(){
+    void checkPutCreateTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
         given()
                 .log().body()
@@ -57,7 +60,7 @@ public class ApiTests {
     }
 
     @Test
-    void checkPatchCreateTest(){
+    void checkPatchCreateTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
         String expectResponse = "zion resident";
         String actualResponse = given()
@@ -75,7 +78,7 @@ public class ApiTests {
     }
 
     @Test
-    void checkDeleteTest(){
+    void checkDeleteTest() {
         given()
                 .log().all()
                 .when()
@@ -86,7 +89,7 @@ public class ApiTests {
     }
 
     @Test
-    void checkNegativeTest(){
+    void checkNegativeTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"test }";
         given()
                 .log().body()
@@ -98,5 +101,71 @@ public class ApiTests {
                 .log().status()
                 .log().body()
                 .statusCode(400);
+    }
+
+    @Test
+    void checkPostCreateModelTest() {
+        String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
+        UserPojo pojo = Spec.request
+                .body(body)
+                .when()
+                .post("/users")
+                .then()
+                .spec(Spec.responseSpec)
+                .extract().as(UserPojo.class);
+        assertEquals("leader", pojo.getJob());
+    }
+
+    @Test
+    void checkGetSingleUserModelTest() {
+        UserData dataPojo = given()
+                .spec(Spec.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract().as(UserData.class);
+        assertEquals(2, dataPojo.getData().getId());
+    }
+
+    @Test
+    void checkGetSingleUserModelTest2() {
+        UserPojo pojo = given()
+                .spec(Spec.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract().as(UserPojo.class);
+        assertEquals(2, pojo.getId());
+    }
+
+    @Test
+    void checkGetSingleUserLombokTest() {
+        UserDataLombok dataLombok = given()
+                .spec(Spec.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract().as(UserDataLombok.class);
+        assertEquals(2, dataLombok.getUserLombok().getId());
+    }
+
+    @Test
+    void checkGetSingleUserGroovyTest() {
+        given()
+                .spec(Spec.request)
+                .when()
+                .get("/users")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .body("data.findAll{it.first_name =~/[a-zA-Z]+/}.first_name.flatten()",
+                        hasItem("Janet"))
+                .body("data.last_name[0]", equalTo("Bluth"));
     }
 }
