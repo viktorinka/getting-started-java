@@ -35,7 +35,8 @@ dependencies {
             "org.slf4j:slf4j-simple:2.0.7",
             "org.aspectj:aspectjweaver:1.9.19",
             "io.rest-assured:rest-assured:5.4.0",
-            "io.rest-assured:json-schema-validator:5.4.0")
+            "io.rest-assured:json-schema-validator:5.4.0",
+            "io.qameta.allure:allure-rest-assured:2.25.0")
 }
 
 tasks.withType(JavaCompile) {

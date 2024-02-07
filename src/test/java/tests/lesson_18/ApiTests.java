@@ -1,5 +1,6 @@
 package tests.lesson_18;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import tests.lesson_18.models.lombok.UserDataLombok;
@@ -7,6 +8,8 @@ import tests.lesson_18.models.pojo.UserData;
 import tests.lesson_18.models.pojo.UserPojo;
 import tests.lesson_18.spec.Spec;
 
+import static helpers.CustomAllureListener.withCustomTemplates;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
@@ -167,5 +170,48 @@ public class ApiTests {
                 .body("data.findAll{it.first_name =~/[a-zA-Z]+/}.first_name.flatten()",
                         hasItem("Janet"))
                 .body("data.last_name[0]", equalTo("Bluth"));
+    }
+
+    @Test
+    void checkGetSingleUserWithAllureTest() {
+        UserDataLombok dataLombok = given()
+                .filter(new AllureRestAssured())
+                .spec(Spec.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract().as(UserDataLombok.class);
+        assertEquals(2, dataLombok.getUserLombok().getId());
+    }
+
+    @Test
+    void checkGetSingleUserWithCustomAllureTest() {
+        UserDataLombok dataLombok = given()
+                .filter(withCustomTemplates())
+                .spec(Spec.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract().as(UserDataLombok.class);
+        assertEquals(2, dataLombok.getUserLombok().getId());
+    }
+
+    @Test
+    void checkGetSingleUserWithStepAllureTest() {
+        UserDataLombok dataLombok = step("Make request", () ->
+                given()
+                .spec(Spec.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract().as(UserDataLombok.class));
+        step("Verify response", () ->
+        assertEquals(2, dataLombok.getUserLombok().getId()));
     }
 }
