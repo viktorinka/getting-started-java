@@ -207,7 +207,7 @@ public class ApiTests {
 
     @Test
     @Story("Api tests")
-    @JiraIssues({@JiraIssue("AE-1")})
+    @JiraIssues({@JiraIssue("HOMEWORK-1103")})
     @DisplayName("Check data for single user")
     void checkGetSingleUserWithStepAllureTest() {
         UserDataLombok dataLombok = step("Make request", () ->
