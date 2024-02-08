@@ -51,12 +51,18 @@ tasks.withType(Test) {
 task remote_test(type: Test) {
     useJUnitPlatform {
         includeTags("remote")
-
-    }
-
-task one_property_test(type: Test) {
-        useJUnitPlatform {
-            includeTags("one_property")
-        }
     }
 }
+
+task one_property_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("one_property")
+    }
+}
+
+task api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("api")
+    }
+}
+

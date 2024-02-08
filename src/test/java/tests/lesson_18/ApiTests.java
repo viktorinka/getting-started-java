@@ -2,6 +2,8 @@ package tests.lesson_18;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.lesson_18.models.lombok.UserDataLombok;
 import tests.lesson_18.models.pojo.UserData;
@@ -201,6 +203,8 @@ public class ApiTests {
     }
 
     @Test
+    @DisplayName("Adding note to advertisement")
+    @Tag("api")
     void checkGetSingleUserWithStepAllureTest() {
         UserDataLombok dataLombok = step("Make request", () ->
                 given()
