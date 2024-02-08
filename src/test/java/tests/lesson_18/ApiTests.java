@@ -1,5 +1,8 @@
 package tests.lesson_18;
 
+import annotations.JiraIssue;
+import annotations.JiraIssues;
+import io.qameta.allure.Story;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
@@ -203,6 +206,8 @@ public class ApiTests {
     }
 
     @Test
+    @Story("Api tests")
+    @JiraIssues({@JiraIssue("AE-1")})
     @DisplayName("Check data for single user")
     void checkGetSingleUserWithStepAllureTest() {
         UserDataLombok dataLombok = step("Make request", () ->
