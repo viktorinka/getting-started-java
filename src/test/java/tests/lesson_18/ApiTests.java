@@ -17,8 +17,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("api")
 public class ApiTests {
-
     @Test
     void checkListUsersSchemeTest() {
         given()
@@ -203,8 +203,7 @@ public class ApiTests {
     }
 
     @Test
-    @DisplayName("Adding note to advertisement")
-    @Tag("api")
+    @DisplayName("Check data for single user")
     void checkGetSingleUserWithStepAllureTest() {
         UserDataLombok dataLombok = step("Make request", () ->
                 given()
