@@ -1,7 +1,6 @@
 package tests.lesson_21;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
@@ -42,15 +41,12 @@ public class TestBaseAllure {
             ));
 
             Configuration.browserCapabilities = capabilities;
-            Configuration.fileDownload = FileDownloadMode.PROXY;
-            Configuration.proxyEnabled=true;
         }
     }
 
     @BeforeEach
     void addListener() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-
     }
 
     @AfterEach

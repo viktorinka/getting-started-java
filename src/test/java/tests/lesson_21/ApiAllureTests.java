@@ -1,5 +1,6 @@
 package tests.lesson_21;
 
+import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -26,7 +27,8 @@ public class ApiAllureTests extends TestBaseAllure {
         testCaseBody.setName(testCaseName);
 
         //openProjectUrl();
-        allurePage.auth("allure8", "allure8");
+       // allurePage.auth("allure8", "allure8");
+
         CreateTestCaseResponse createTestCaseResponse = step("Make request", () ->
                 given(SpecAllure.request)
                         .body(testCaseBody)
@@ -44,6 +46,7 @@ public class ApiAllureTests extends TestBaseAllure {
     @Test
     @DisplayName("Delete test case")
     void deleteTest() {
+        Selenide.open("https://allure.autotests.cloud");
         allurePage.auth("allure8", "allure8");
         allurePage.deleteCase();
     }
