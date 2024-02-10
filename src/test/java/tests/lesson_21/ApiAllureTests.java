@@ -25,7 +25,7 @@ public class ApiAllureTests extends TestBaseAllure {
         CreateTestCaseBody testCaseBody = new CreateTestCaseBody();
         testCaseBody.setName(testCaseName);
 
-        openProjectUrl();
+        //openProjectUrl();
         CreateTestCaseResponse createTestCaseResponse = step("Make request", () ->
                 given(SpecAllure.request)
                         .body(testCaseBody)
@@ -43,7 +43,7 @@ public class ApiAllureTests extends TestBaseAllure {
     @Test
     @DisplayName("Delete test case")
     void deleteTest() {
-        openProjectUrl();
+        allurePage.auth("allure8", "allure8");
         allurePage.deleteCase();
     }
 }

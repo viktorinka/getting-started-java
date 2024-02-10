@@ -8,7 +8,7 @@ import static tests.lesson_21.TestBaseAllure.projectId;
 
 import org.openqa.selenium.Cookie;
 
-public class ProjectConfig {
+public class ProjectConfig{
     public static void openProjectUrl() {
         open("https://allure.autotests.cloud/favicon.ico");
 
