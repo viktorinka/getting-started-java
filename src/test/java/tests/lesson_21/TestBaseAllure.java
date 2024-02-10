@@ -11,7 +11,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import tests.lesson_21.config.AuthConfig;
 import tests.lesson_21.config.WebDriverConfig;
 
 import java.util.Map;
@@ -23,7 +22,6 @@ public class TestBaseAllure {
             xsrfToken = "ef9aa387-6082-4bb8-ae3e-12df30739ef9";
 
     static WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-    static AuthConfig authConfig = ConfigFactory.create(AuthConfig.class, System.getProperties());
 
     @BeforeAll
     static void configuration() {
@@ -33,12 +31,9 @@ public class TestBaseAllure {
         Configuration.baseUrl = webDriverConfig.baseUrl();
         RestAssured.baseURI = "https://allure.autotests.cloud";
         Configuration.pageLoadStrategy = "eager";
-        String remoteUrl = "https://" + authConfig.remote_username() + ":" + authConfig.remote_password()
-                + "@" + webDriverConfig.remoteUrl() + "/wd/hub";
-        System.out.println(remoteUrl);
-        if (webDriverConfig.isRemote()) {
-            Configuration.remote = remoteUrl;
 
+        if (webDriverConfig.isRemote()) {
+            Configuration.remote = webDriverConfig.remoteUrl();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                     "enableVNC", true,
