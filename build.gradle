@@ -36,7 +36,9 @@ dependencies {
             "org.aspectj:aspectjweaver:1.9.19",
             "io.rest-assured:rest-assured:5.4.0",
             "io.rest-assured:json-schema-validator:5.4.0",
-            "io.qameta.allure:allure-rest-assured:2.25.0")
+            "io.qameta.allure:allure-rest-assured:2.25.0",
+            "org.assertj:assertj-core:3.24.2",
+            "org.aeonbits.owner:owner:1.0.4")
 }
 
 tasks.withType(JavaCompile) {
