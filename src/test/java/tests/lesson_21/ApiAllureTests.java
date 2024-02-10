@@ -26,6 +26,7 @@ public class ApiAllureTests extends TestBaseAllure {
         testCaseBody.setName(testCaseName);
 
         //openProjectUrl();
+        allurePage.auth("allure8", "allure8");
         CreateTestCaseResponse createTestCaseResponse = step("Make request", () ->
                 given(SpecAllure.request)
                         .body(testCaseBody)
