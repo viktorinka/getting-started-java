@@ -27,6 +27,5 @@ public interface WebDriverConfig extends Config {
     Boolean isRemote();
 
     @Key("remoteUrl")
-    @DefaultValue("http://localhost:4444")
     String remoteUrl();
 }
