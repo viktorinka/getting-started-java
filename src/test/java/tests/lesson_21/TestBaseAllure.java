@@ -18,8 +18,8 @@ import java.util.Map;
 public class TestBaseAllure {
     public static String
             projectId = "4033",
-            allureTestOpsSession = "665afd1e-548a-4a87-b256-e3c911f2f042",
-            xsrfToken = "ef9aa387-6082-4bb8-ae3e-12df30739ef9";
+            allureTestOpsSession = "c5d844c1-5d88-4878-ba05-cf516d09105d",
+            xsrfToken = "c5d844c1-5d88-4878-ba05-cf516d09105d";
 
     static WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
@@ -33,7 +33,7 @@ public class TestBaseAllure {
         Configuration.pageLoadStrategy = "eager";
 
         if (webDriverConfig.isRemote()) {
-            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+            Configuration.remote = webDriverConfig.remoteUrl();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                     "enableVNC", true,
