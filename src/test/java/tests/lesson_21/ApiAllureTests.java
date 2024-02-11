@@ -2,6 +2,7 @@ package tests.lesson_21;
 
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class ApiAllureTests extends TestBaseAllure {
 
         CreateTestCaseBody testCaseBody = new CreateTestCaseBody();
         testCaseBody.setName(testCaseName);
+       // RestAssured.baseURI = "https://allure.autotests.cloud";
 
         openProjectUrl();
        // allurePage.auth("allure8", "allure8");

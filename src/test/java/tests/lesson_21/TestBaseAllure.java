@@ -29,7 +29,7 @@ public class TestBaseAllure {
         Configuration.browserVersion = webDriverConfig.browserVersion();
         Configuration.browserSize = webDriverConfig.browserSize();
         Configuration.baseUrl = webDriverConfig.baseUrl();
-        RestAssured.baseURI = "https://allure.autotests.cloud";
+
         Configuration.pageLoadStrategy = "eager";
 
         if (webDriverConfig.isRemote()) {
@@ -42,7 +42,7 @@ public class TestBaseAllure {
 
             Configuration.browserCapabilities = capabilities;
         }
-    }
+        }
 
     @BeforeEach
     void addListener() {
