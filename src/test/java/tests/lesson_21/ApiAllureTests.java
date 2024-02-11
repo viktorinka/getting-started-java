@@ -1,8 +1,6 @@
 package tests.lesson_21;
 
-import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +12,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static tests.lesson_21.config.ProjectConfig.openProjectUrl;
+
 @Tag("api")
 public class ApiAllureTests extends TestBaseAllure {
     AllurePage allurePage = new AllurePage();
@@ -26,12 +25,10 @@ public class ApiAllureTests extends TestBaseAllure {
 
         CreateTestCaseBody testCaseBody = new CreateTestCaseBody();
         testCaseBody.setName(testCaseName);
-       // RestAssured.baseURI = "https://allure.autotests.cloud";
 
         openProjectUrl();
-       // allurePage.auth("allure8", "allure8");
 
-        CreateTestCaseResponse createTestCaseResponse = step("Make request", () ->
+        CreateTestCaseResponse createTestCaseResponse = step("Make post request", () ->
                 given(SpecAllure.request)
                         .body(testCaseBody)
                         .queryParam("projectId", projectId)
@@ -48,8 +45,8 @@ public class ApiAllureTests extends TestBaseAllure {
     @Test
     @DisplayName("Delete test case")
     void deleteTest() {
-        Selenide.open("https://allure.autotests.cloud");
-        allurePage.auth("allure8", "allure8");
-        allurePage.deleteCase();
+        allurePage.auth("allure8", "allure8")
+                .openProject()
+                .deleteCase();
     }
 }

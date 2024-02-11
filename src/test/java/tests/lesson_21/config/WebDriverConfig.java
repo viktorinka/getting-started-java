@@ -3,7 +3,7 @@ package tests.lesson_21.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:properties/remote.properties"
+        "classpath:properties/${env}.properties",
 })
 public interface WebDriverConfig extends Config {
     @Key("browser")

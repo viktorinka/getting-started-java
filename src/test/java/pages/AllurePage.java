@@ -23,4 +23,10 @@ public class AllurePage {
         $(".Menu__item_danger").click();
         return this;
     }
+
+    @Step("Open project")
+    public AllurePage openProject() {
+        open("https://allure.autotests.cloud/project/4033/test-cases/");
+        return this;
+    }
 }
